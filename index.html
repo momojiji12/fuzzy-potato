@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>云中锦书</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="desk-grain"></div>
+    <div class="letter-scene">
+      <div class="envelope">
+        <div class="flap"></div>
+        <div class="cover-title">云中谁寄锦书来</div>
+      </div>
+      <div class="unfold-paper"></div>
+    </div>
+  </div>
+
+  <main class="stage">
+    <section class="scroll" aria-label="古风约会信笺">
+      <header class="app-head">
+        <button class="nav-button" id="backButton" type="button" aria-label="返回">‹</button>
+        <div>
+          <p id="stepLabel">锦书初启</p>
+          <h1 id="pageTitle">云中锦书</h1>
+        </div>
+        <button class="nav-button" id="restartButton" type="button" aria-label="重启">↻</button>
+      </header>
+
+      <div class="ink-line" aria-hidden="true"><span id="progressBar"></span></div>
+
+      <section class="panel active opening-panel" id="welcomePanel">
+        <p class="poem">玲珑骰子安红豆，入骨相思知不知。</p>
+        <div class="answer-stack">
+          <button class="choice-button yes" type="button" data-action="accept">愿赴此约，与君同游</button>
+          <button class="choice-button no" id="declineButton" type="button" data-action="decline">今夕未便，且容我婉拒</button>
+        </div>
+      </section>
+
+      <section class="panel" id="datePanel">
+        <div class="calendar-wrap">
+          <div class="calendar-toolbar">
+            <button class="small-seal" id="prevMonth" type="button">‹</button>
+            <select id="yearSelect" aria-label="选择年份"></select>
+            <select id="monthSelect" aria-label="选择月份"></select>
+            <button class="small-seal" id="nextMonth" type="button">›</button>
+          </div>
+          <div class="calendar-week" aria-hidden="true">
+            <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span>
+          </div>
+          <div class="calendar-grid" id="calendarGrid" role="listbox" aria-label="选择约会日期"></div>
+        </div>
+        <button class="primary wide" id="dateNext" type="button" data-action="dateNext" disabled>就定此日</button>
+      </section>
+
+      <section class="panel" id="timePanel">
+        <p class="soft-copy">可多选。愿与你共度的时光，皆可先留在此处。</p>
+        <div class="period-grid" id="periodGrid"></div>
+        <button class="primary wide" id="periodNext" type="button" data-action="periodNext" disabled>为时光添些雅事</button>
+      </section>
+
+      <section class="panel" id="matchPanel">
+        <p class="soft-copy">左侧择一段时光，右侧为它配上想一起做的事。每段时光可多选。</p>
+        <div class="match-layout">
+          <div class="period-column" id="matchPeriods"></div>
+          <div class="activity-column" id="activityChoices"></div>
+        </div>
+        <button class="primary wide" id="matchNext" type="button" data-action="matchNext" disabled>合成此约</button>
+      </section>
+
+      <section class="panel" id="planPanel">
+        <article class="date-card">
+          <p class="summary-date" id="summaryDate"></p>
+          <div class="timeline" id="timeline"></div>
+        </article>
+        <article class="invite-card">
+          <p class="seal-label">可寄之言</p>
+          <p id="inviteText"></p>
+        </article>
+        <label class="confirm-line">
+          <input id="confirmInvite" type="checkbox">
+          <span>确认本次约会，我将发出邀约。</span>
+        </label>
+        <button class="primary wide" id="confirmNext" type="button" data-action="confirmNext" disabled>落款封笺</button>
+        <button class="ghost wide" type="button" data-action="restart">重拟一封</button>
+      </section>
+
+      <section class="panel" id="notifyPanel">
+        <article class="send-card">
+          <p class="seal-label">寄出之前</p>
+          <p id="selfNotice"></p>
+        </article>
+        <div class="notify-grid">
+          <button class="notify-action" type="button" data-action="copyInvite">
+            <strong>复制邀约正文</strong>
+            <span>适合发到微信、短信或私信里。</span>
+          </button>
+          <button class="notify-action" type="button" data-action="copySelf">
+            <strong>复制给自己的备忘</strong>
+            <span>把日期、时段和活动一并留存。</span>
+          </button>
+          <button class="notify-action" type="button" data-action="browserNotify">
+            <strong>提醒我一声</strong>
+            <span>允许浏览器通知后，给自己一个温柔提醒。</span>
+          </button>
+        </div>
+        <button class="ghost wide" type="button" data-action="restart">收起此信，再写一封</button>
+      </section>
+    </section>
+  </main>
+
+  <dialog class="other-dialog" id="otherDialog">
+    <form method="dialog">
+      <h2>愿与我同做何事？</h2>
+      <p>请写出想和我一起做的事情吧。</p>
+      <input id="otherInput" type="text" placeholder="例如：听一场小曲、夜游河畔">
+      <div class="dialog-actions">
+        <button class="ghost" value="cancel" type="submit">暂不写</button>
+        <button class="primary" id="saveOther" value="default" type="button">添入信中</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
