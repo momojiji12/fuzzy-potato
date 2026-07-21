@@ -21,6 +21,7 @@ body {
   min-height: 100vh;
   color: var(--ink);
   font-family: "KaiTi", "STKaiti", "FangSong", "Microsoft YaHei", serif;
+  overflow-x: hidden;
   background:
     linear-gradient(90deg, rgba(81, 70, 62, .045) 1px, transparent 1px),
     linear-gradient(rgba(81, 70, 62, .045) 1px, transparent 1px),
@@ -577,38 +578,259 @@ button:disabled {
 }
 
 @media (max-width: 760px) {
+  body {
+    background-size: 28px 28px, 28px 28px, auto, auto, auto;
+  }
+
+  .intro {
+    min-height: 100svh;
+  }
+
+  .letter-scene {
+    width: 100vw;
+    height: 100svh;
+  }
+
+  .envelope {
+    width: min(58vw, 260px);
+    height: min(58vh, 500px);
+    min-width: 190px;
+    min-height: 340px;
+  }
+
+  .cover-title {
+    font-size: clamp(32px, 5.4vh, 48px);
+    letter-spacing: clamp(4px, .8vh, 8px);
+  }
+
   .stage {
-    padding: 12px;
+    align-items: start;
+    padding: 10px;
+    min-height: 100svh;
   }
 
   .scroll {
-    min-height: calc(100vh - 24px);
-    padding: 24px 18px 30px;
+    width: min(100%, 560px);
+    min-height: calc(100svh - 20px);
+    padding: 22px 14px 28px;
+    border-radius: 14px;
+    box-shadow: 0 14px 46px rgba(66, 50, 36, .18), inset 0 0 0 6px rgba(255,255,255,.14);
   }
 
-  .calendar-toolbar,
-  .period-grid,
-  .match-layout,
-  .activity-column,
   .notify-grid {
     grid-template-columns: 1fr;
   }
 
+  .scroll::before,
+  .scroll::after {
+    left: 16px;
+    right: 16px;
+  }
+
+  .app-head {
+    grid-template-columns: 38px 1fr 38px;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .app-head p,
+  .seal-label {
+    font-size: 13px;
+  }
+
+  h1 {
+    font-size: clamp(28px, 9vw, 42px);
+    line-height: 1.12;
+  }
+
+  .nav-button {
+    width: 38px;
+    height: 38px;
+    font-size: 24px;
+  }
+
+  .ink-line {
+    margin: 16px 0 22px;
+  }
+
+  .opening-panel {
+    min-height: calc(100svh - 178px);
+    align-content: center;
+  }
+
+  .poem {
+    margin: 18px auto 46px;
+    font-size: clamp(23px, 7vw, 31px);
+    letter-spacing: 0;
+    line-height: 1.75;
+  }
+
+  .answer-stack {
+    gap: 12px;
+  }
+
+  .choice-button,
+  .primary,
+  .ghost,
+  .period-card,
+  .activity-card,
+  .period-tab,
+  .notify-action {
+    min-height: 50px;
+    border-radius: 10px;
+  }
+
+  .choice-button {
+    font-size: 17px;
+  }
+
+  .soft-copy {
+    margin-bottom: 14px;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .calendar-wrap {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .calendar-toolbar {
+    grid-template-columns: 36px minmax(0, 1fr) minmax(0, 1fr) 36px;
+    gap: 6px;
+  }
+
+  .calendar-toolbar select {
+    min-height: 38px;
+    padding: 0 4px;
+    font-size: 18px;
+  }
+
+  .small-seal {
+    min-height: 38px;
+    font-size: 20px;
+  }
+
   .calendar-week,
   .calendar-grid {
-    gap: 5px;
+    gap: 4px;
+  }
+
+  .calendar-week {
+    font-size: 13px;
   }
 
   .day-button {
-    min-height: 40px;
+    min-height: 36px;
+    border-radius: 8px;
+    font-size: 15px;
+  }
+
+  .day-button.selected::after {
+    inset: 5px 6px;
+    border-width: 2px;
+    border-left-width: 4px;
+  }
+
+  .period-grid,
+  .activity-column {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .period-card,
+  .activity-card,
+  .period-tab,
+  .notify-action {
+    padding: 12px;
+  }
+
+  .period-card strong,
+  .activity-card strong,
+  .notify-action strong {
+    margin-bottom: 5px;
+    font-size: 17px;
+  }
+
+  .period-card span,
+  .activity-card span,
+  .notify-action span {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .match-layout {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .period-column {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .period-tab span {
+    font-size: min(var(--period-font-size, 18px), 17px);
+    line-height: 1.35;
+  }
+
+  .date-card,
+  .invite-card,
+  .send-card {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .summary-date {
+    margin-bottom: 12px;
+    font-size: 22px;
   }
 
   .time-card {
     grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 13px;
   }
 
-  .poem {
-    margin-top: 34px;
-    letter-spacing: 2px;
+  .time-card p,
+  .invite-card p,
+  .send-card p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .confirm-line {
+    align-items: flex-start;
+    padding: 12px 14px;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .toast {
+    width: calc(100vw - 28px);
+    bottom: 14px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .stage {
+    padding: 6px;
+  }
+
+  .scroll {
+    min-height: calc(100svh - 12px);
+    padding: 20px 12px 24px;
+  }
+
+  .period-column {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 360px) {
+  .period-grid,
+  .activity-column {
+    grid-template-columns: 1fr;
   }
 }
